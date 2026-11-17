@@ -1,3 +1,14 @@
+{% if product %}
+  <div
+    id="preselect-options"
+    data-product-id="{{ product.id }}"
+    data-shop="{{ shop.permanent_domain | escape }}"
+    data-customer-logged-in="{% if customer %}1{% else %}0{% endif %}"
+    data-endpoint="https://waviness-corncob-sly.ngrok-free.dev/storefront/preselect"
+    hidden
+  ></div>
+{% endif %}
+
 {% schema %}
 {
   "name": "PreSelect Options",
