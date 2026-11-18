@@ -4,6 +4,9 @@ async function startPreselectOptions() {
     if (!app || app.dataset.started === 'true') {
         return;
     }
+    const shop = window.Shopify?.shop;
+    if (!shop) return;
+
     app.dataset.started = 'true';
 
     // A variant link always takes priority over our initial selection.
@@ -38,7 +41,7 @@ async function startPreselectOptions() {
         const country = await detectPreselectCountry();
         if (shopperInteracted || window.location.href !== initialUrl) return;
         const url = new URL(app.dataset.endpoint);
-        url.searchParams.set('shop', app.dataset.shop);
+        url.searchParams.set('shop', shop);
         url.searchParams.set('product_id', app.dataset.productId);
         url.searchParams.set('customer_logged_in', app.dataset.customerLoggedIn);
         if (country) url.searchParams.set('country', country);
